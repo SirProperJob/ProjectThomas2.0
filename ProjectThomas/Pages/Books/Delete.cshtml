@@ -1,0 +1,46 @@
+﻿@page "{id:int}"
+@model ProjectThomas.Pages.Books.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Owned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Owned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.ReadIt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.ReadIt)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Book.BookId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-page="./Index">Back to List</a>
+    </form>
+</div>
