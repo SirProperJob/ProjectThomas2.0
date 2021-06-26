@@ -5,7 +5,7 @@
         "info": true,
         "columnDefs":
             [
-                { "targets": [4], "orderable": false },
+                { "targets": [6], "orderable": false },
             ],
     });
 });

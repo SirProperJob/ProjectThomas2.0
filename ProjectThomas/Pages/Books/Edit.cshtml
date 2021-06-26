@@ -15,6 +15,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Book.BookId" />
             <div class="form-group">
+                <label asp-for="Book.Series" class="control-label"></label>
+                <input asp-for="Book.Series" class="form-control" />
+                <span asp-validation-for="Book.Series" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Book.Title" class="control-label"></label>
                 <input asp-for="Book.Title" class="form-control" />
                 <span asp-validation-for="Book.Title" class="text-danger"></span>
@@ -35,6 +40,13 @@
                 <div class="checkbox">
                     <label>
                         <input asp-for="Book.ReadIt" /> @Html.DisplayNameFor(model => model.Book.ReadIt)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Book.Pending" /> @Html.DisplayNameFor(model => model.Book.Pending)
                     </label>
                 </div>
             </div>

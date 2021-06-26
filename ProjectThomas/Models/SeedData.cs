@@ -23,6 +23,7 @@ namespace ProjectThomas.Models
                 context.Book.AddRange(
                     new Book
                     {
+                        Series = "Mr Men",
                         Title = "Mr Tickle",
                         Type = "Mr Men",
                         Owned = true
@@ -30,6 +31,7 @@ namespace ProjectThomas.Models
 
                     new Book
                     {
+                        Series = "Mr Men",
                         Title = "Mr Greedy",
                         Type = "Mr Men",
                         Owned = true
@@ -37,6 +39,7 @@ namespace ProjectThomas.Models
 
                     new Book
                     {
+                        Series = "Mr Men",
                         Title = "Mr Happy",
                         Type = "Mr Men",
                         Owned = true
@@ -44,6 +47,7 @@ namespace ProjectThomas.Models
 
                     new Book
                     {
+                        Series = "Mr Men",
                         Title = "Mr Nosey",
                         Type = "Mr Men",
                         Owned = true

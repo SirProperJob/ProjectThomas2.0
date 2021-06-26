@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Book[0].Series)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Book[0].Title)
             </th>
             <th>
@@ -26,31 +29,40 @@
             <th>
                 @Html.DisplayNameFor(model => model.Book[0].ReadIt)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Pending)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Book)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Owned)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReadIt)
-                </td>
-                <td>
-                    <a class="btn btn-xs btn-success fas fa-edit" asp-page="./Edit" asp-route-id="@item.BookId"></a>
-                    <a class="btn btn-xs btn-info fas fa-newspaper" asp-page="./Details" asp-route-id="@item.BookId"></a>
-                    <a class="btn btn-xs btn-danger fas fa-trash-alt" asp-page="./Delete" asp-route-id="@item.BookId"></a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Series)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReadIt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pending)
+            </td>
+            <td>
+                <a class="btn btn-xs btn-success fas fa-edit" asp-page="./Edit" asp-route-id="@item.BookId"></a>
+                <a class="btn btn-xs btn-info fas fa-newspaper" asp-page="./Details" asp-route-id="@item.BookId"></a>
+                <a class="btn btn-xs btn-danger fas fa-trash-alt" asp-page="./Delete" asp-route-id="@item.BookId"></a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
