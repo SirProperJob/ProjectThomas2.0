@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using ProjectThomas.Models;
 
 namespace ProjectThomas.Areas.Identity.Pages.Account
 {
@@ -20,14 +21,16 @@ namespace ProjectThomas.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ProjectThomas.Data.ApplicationDbContext _context;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager, ProjectThomas.Data.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -36,6 +39,11 @@ namespace ProjectThomas.Areas.Identity.Pages.Account
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public CarouselImage img1 { get; set; }
+        public CarouselImage img2 { get; set; }
+        public CarouselImage img3 { get; set; }
+        public CarouselImage img4 { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -69,6 +77,39 @@ namespace ProjectThomas.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+
+            img1 = GetRandomImg();
+            img2 = GetRandomImg(img1.CarouselImageId);
+            img3 = GetRandomImg(img1.CarouselImageId, img2.CarouselImageId);
+            img4 = GetRandomImg(img1.CarouselImageId, img2.CarouselImageId, img3.CarouselImageId);
+        }
+
+        private CarouselImage GetRandomImg(int img1 = -1, int img2 = -1, int img3 = -1)
+        {
+            if (img1 == -1)
+            {
+                CarouselImage ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
+                return ci;
+            }
+            if (img2 == -1)
+            {
+                CarouselImage ci; 
+                do
+                {
+                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
+                } while (ci.CarouselImageId == img1);
+                return ci;
+            }
+            if (img3 == -1)
+            {
+                CarouselImage ci;
+                do
+                {
+                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
+                } while (ci.CarouselImageId == img1 || ci.CarouselImageId == img2);
+                return ci;
+            }
+            return _context.CarouselImage.FirstOrDefault();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

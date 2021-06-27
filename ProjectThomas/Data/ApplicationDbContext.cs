@@ -13,5 +13,6 @@ namespace ProjectThomas.Data
         {
         }
         public DbSet<ProjectThomas.Models.Book> Book { get; set; }
+        public DbSet<ProjectThomas.Models.CarouselImage> CarouselImage { get; set; }
     }
 }
