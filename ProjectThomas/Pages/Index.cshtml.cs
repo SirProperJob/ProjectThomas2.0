@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ProjectThomas.GlobalFunctions;
+using ProjectThomas.Models;
 using ProjectThomas.ViewModel;
 
 namespace ProjectThomas.Pages
@@ -19,6 +21,10 @@ namespace ProjectThomas.Pages
         }
 
         public IList<BookSummary> BookSummary { get; set; }
+        public CarouselImage img1 { get; set; }
+        public CarouselImage img2 { get; set; }
+        public CarouselImage img3 { get; set; }
+        public CarouselImage img4 { get; set; }
 
         public void OnGet()
         {
@@ -33,6 +39,14 @@ namespace ProjectThomas.Pages
                     };
 
             BookSummary = q.ToList();
+            
+            ImageFunctions imgFunc = new ImageFunctions();
+
+            img1 = imgFunc.GetRandomImg(_context);
+            img2 = imgFunc.GetRandomImg(_context, img1.CarouselImageId);
+            img3 = imgFunc.GetRandomImg(_context, img1.CarouselImageId, img2.CarouselImageId);
+            img4 = imgFunc.GetRandomImg(_context, img1.CarouselImageId, img2.CarouselImageId, img3.CarouselImageId);
+
         }
     }
 }

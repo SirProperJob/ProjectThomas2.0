@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProjectThomas.Models;
+using ProjectThomas.GlobalFunctions;
 
 namespace ProjectThomas.Areas.Identity.Pages.Account
 {
@@ -78,46 +79,12 @@ namespace ProjectThomas.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
 
-            img1 = GetRandomImg();
-            img2 = GetRandomImg(img1.CarouselImageId);
-            img3 = GetRandomImg(img1.CarouselImageId, img2.CarouselImageId);
-            img4 = GetRandomImg(img1.CarouselImageId, img2.CarouselImageId, img3.CarouselImageId);
-        }
+            ImageFunctions imgFunc = new ImageFunctions();
 
-        private CarouselImage GetRandomImg(int img1 = -1, int img2 = -1, int img3 = -1)
-        {
-            CarouselImage ci;
-            if (img1 == -1)
-            {
-                ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
-                return ci;
-            }
-            else if (img2 == -1)
-            {
-                do
-                {
-                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
-                } while (ci.CarouselImageId == img1);
-                return ci;
-            }
-            else if (img3 == -1)
-            {
-                do
-                {
-                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
-                } while (ci.CarouselImageId == img1 || ci.CarouselImageId == img2);
-                return ci;
-            }
-            else
-            {
-                
-                do
-                {
-                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
-                } while (ci.CarouselImageId == img1 || ci.CarouselImageId == img2 || ci.CarouselImageId == img3);
-                return ci;
-
-            }
+            img1 = imgFunc.GetRandomImg(_context);
+            img2 = imgFunc.GetRandomImg(_context, img1.CarouselImageId);
+            img3 = imgFunc.GetRandomImg(_context, img1.CarouselImageId, img2.CarouselImageId);
+            img4 = imgFunc.GetRandomImg(_context, img1.CarouselImageId, img2.CarouselImageId, img3.CarouselImageId);
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

@@ -11,4 +11,6 @@ namespace ProjectThomas.Models
         public string UrlString { get; set; }
         public string altString { get; set; }
     }
+
+    
 }
