@@ -86,30 +86,38 @@ namespace ProjectThomas.Areas.Identity.Pages.Account
 
         private CarouselImage GetRandomImg(int img1 = -1, int img2 = -1, int img3 = -1)
         {
+            CarouselImage ci;
             if (img1 == -1)
             {
-                CarouselImage ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
+                ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
                 return ci;
             }
-            if (img2 == -1)
+            else if (img2 == -1)
             {
-                CarouselImage ci; 
                 do
                 {
                     ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
                 } while (ci.CarouselImageId == img1);
                 return ci;
             }
-            if (img3 == -1)
+            else if (img3 == -1)
             {
-                CarouselImage ci;
                 do
                 {
                     ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
                 } while (ci.CarouselImageId == img1 || ci.CarouselImageId == img2);
                 return ci;
             }
-            return _context.CarouselImage.FirstOrDefault();
+            else
+            {
+                
+                do
+                {
+                    ci = _context.CarouselImage.OrderBy(x => Guid.NewGuid()).First();
+                } while (ci.CarouselImageId == img1 || ci.CarouselImageId == img2 || ci.CarouselImageId == img3);
+                return ci;
+
+            }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
