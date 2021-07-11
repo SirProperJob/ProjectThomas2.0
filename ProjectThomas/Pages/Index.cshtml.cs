@@ -21,6 +21,7 @@ namespace ProjectThomas.Pages
         }
 
         public IList<BookSummary> BookSummary { get; set; }
+        public IList<BookSummary> SeriesSummary { get; set; }
         public CarouselImage img1 { get; set; }
         public CarouselImage img2 { get; set; }
         public CarouselImage img3 { get; set; }
@@ -39,7 +40,19 @@ namespace ProjectThomas.Pages
                     };
 
             BookSummary = q.ToList();
-            
+
+            var sq = from b in _context.Book
+                    group b by b.Series into g
+                    select new BookSummary
+                    {
+                        Range = g.Key,
+                        TotalCount = g.Count(),
+                        OwnedCount = g.Where(o => o.Owned == true).Count(),
+                        ReadCount = g.Where(o => o.ReadIt == true).Count(),
+                    };
+
+            SeriesSummary = sq.ToList();
+
             ImageFunctions imgFunc = new ImageFunctions();
 
             img1 = imgFunc.GetRandomImg(_context);

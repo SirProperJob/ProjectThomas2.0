@@ -74,7 +74,47 @@
     </div>*@
 </div>
 <div class="row">
-    <table id="Summary" class="table">
+    <table id="SeriesSummary" class="table">
+        <thead>
+            <tr>
+                <th>
+                    Series @*@Html.DisplayNameFor(model => model.SeriesSummary[0].Range)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeriesSummary[0].TotalCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeriesSummary[0].OwnedCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeriesSummary[0].ReadCount)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SeriesSummary)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Range)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnedCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReadCount)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br>
+<div class="row">
+    <table id="RangeSummary" class="table">
         <thead>
             <tr>
                 <th>
