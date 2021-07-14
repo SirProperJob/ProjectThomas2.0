@@ -1,0 +1,68 @@
+﻿@page
+@model ProjectThomas.Pages.Legos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table id="Lego" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lego[0].Range)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lego[0].Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lego[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lego[0].NumPieces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lego[0].Owned)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Lego)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Range)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPieces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owned)
+            </td>
+            <td>
+                <a class="btn btn-xs btn-success fas fa-edit" asp-page="./Edit" asp-route-id="@item.LegoId"></a>
+                <a class="btn btn-xs btn-info fas fa-newspaper" asp-page="./Details" asp-route-id="@item.LegoId"></a>
+                <a class="btn btn-xs btn-danger fas fa-trash-alt" asp-page="./Delete" asp-route-id="@item.LegoId"></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<label>Owned: @Html.DisplayFor(model => model.OwnedCount) of @Model.Lego.Count()</label>
+
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+    <script src="~/js/LegoIndex.js" asp-append-version="true"></script>
+}

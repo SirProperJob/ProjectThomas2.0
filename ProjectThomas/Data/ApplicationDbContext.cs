@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ProjectThomas.Models;
 
 namespace ProjectThomas.Data
 {
@@ -14,5 +15,6 @@ namespace ProjectThomas.Data
         }
         public DbSet<ProjectThomas.Models.Book> Book { get; set; }
         public DbSet<ProjectThomas.Models.CarouselImage> CarouselImage { get; set; }
+        public DbSet<ProjectThomas.Models.Lego> Lego { get; set; }
     }
 }

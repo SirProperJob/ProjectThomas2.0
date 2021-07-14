@@ -1,0 +1,57 @@
+﻿@page "{id:int}"
+@model ProjectThomas.Pages.Legos.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Lego</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Lego.LegoId" />
+            <div class="form-group">
+                <label asp-for="Lego.Range" class="control-label"></label>
+                <input asp-for="Lego.Range" class="form-control" />
+                <span asp-validation-for="Lego.Range" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lego.Number" class="control-label"></label>
+                <input asp-for="Lego.Number" class="form-control" />
+                <span asp-validation-for="Lego.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lego.Name" class="control-label"></label>
+                <input asp-for="Lego.Name" class="form-control" />
+                <span asp-validation-for="Lego.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lego.NumPieces" class="control-label"></label>
+                <input asp-for="Lego.NumPieces" class="form-control" />
+                <span asp-validation-for="Lego.NumPieces" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Lego.Owned" /> @Html.DisplayNameFor(model => model.Lego.Owned)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,49 @@
+﻿@page "{id:int}"
+@model ProjectThomas.Pages.Legos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lego</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lego.Range)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lego.Range)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lego.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lego.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lego.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lego.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lego.NumPieces)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lego.NumPieces)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lego.Owned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lego.Owned)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.Lego.LegoId">Edit</a>
+    <a class="btn btn-primary" asp-page="./Index">Back to List</a>
+</div>

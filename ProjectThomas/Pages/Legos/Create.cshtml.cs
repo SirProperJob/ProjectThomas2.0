@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectThomas.Data;
 using ProjectThomas.Models;
 
-namespace ProjectThomas.Pages.Books
+namespace ProjectThomas.Pages.Legos
 {
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
@@ -27,7 +27,7 @@ namespace ProjectThomas.Pages.Books
         }
 
         [BindProperty]
-        public Book Book { get; set; }
+        public Lego Lego { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -36,7 +36,7 @@ namespace ProjectThomas.Pages.Books
                 return Page();
             }
 
-            _context.Book.Add(Book);
+            _context.Lego.Add(Lego);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
