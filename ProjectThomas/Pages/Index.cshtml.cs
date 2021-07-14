@@ -22,6 +22,7 @@ namespace ProjectThomas.Pages
 
         public IList<BookSummary> BookSummary { get; set; }
         public IList<BookSummary> SeriesSummary { get; set; }
+        public IList<LegoSummary> LegoSummary { get; set; }
         public CarouselImage img1 { get; set; }
         public CarouselImage img2 { get; set; }
         public CarouselImage img3 { get; set; }
@@ -52,6 +53,18 @@ namespace ProjectThomas.Pages
                     };
 
             SeriesSummary = sq.ToList();
+
+            var lq = from l in _context.Lego
+                     group l by l.Range into g
+                     select new LegoSummary
+                     {
+                         Range = g.Key,
+                         TotalCount = g.Count(),
+                         OwnedCount = g.Where(o => o.Owned == true).Count()
+                     };
+
+            LegoSummary = lq.ToList();
+
 
             ImageFunctions imgFunc = new ImageFunctions();
 
